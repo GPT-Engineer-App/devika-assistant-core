@@ -60,7 +60,7 @@ const Index = () => {
         <Heading size="lg" mb={4}>
           Agent Core
         </Heading>
-        <Text>The Agent Core orchestrates the AI planning, reasoning, and execution process, communicating with various sub-agents.</Text>
+        <Text>The Agent Core orchestrates the AI planning, reasoning, and execution process, communicating with various sub-agents. It manages the overall AI planning, reasoning, and execution process. This includes receiving high-level prompts from users, generating plans through the Planner agent, and coordinating with other agents like the Researcher and Coder to execute these plans. The Agent Core also handles conversation history, project-specific context, and updates the agent state and internal monologue, ensuring a seamless integration and operation of all components.</Text>
       </Box>
 
       <Box id="agents" my={10}>

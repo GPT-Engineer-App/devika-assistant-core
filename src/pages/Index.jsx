@@ -60,7 +60,25 @@ const Index = () => {
         <Heading size="lg" mb={4}>
           Agent Core
         </Heading>
-        <Text>The Agent Core orchestrates the AI planning, reasoning, and execution process, communicating with various sub-agents. It manages the overall AI planning, reasoning, and execution process. This includes receiving high-level prompts from users, generating plans through the Planner agent, and coordinating with other agents like the Researcher and Coder to execute these plans. The Agent Core also handles conversation history, project-specific context, and updates the agent state and internal monologue, ensuring a seamless integration and operation of all components.</Text>
+        <Text>
+          The Agent Core orchestrates the AI planning, reasoning, and execution process, communicating with various sub-agents. Here's how it works:
+          <br />
+          <br />
+          When a user provides a high-level prompt, the execute method is invoked on the Agent. The prompt is first passed to the Planner agent to generate a step-by-step plan. The Researcher agent then takes this plan and extracts relevant search queries and context. The Agent performs web searches using Bing Search API and crawls the top results. The raw crawled content is passed through the Formatter agent to extract clean, relevant information. This researched context, along with the step-by-step plan, is fed to the Coder agent to generate code. The generated code is saved to the project directory on disk.
+          <br />
+          <br />
+          If the user interacts further with a follow-up prompt, the subsequent_execute method is invoked. The Action agent determines the appropriate action to take based on the user's message (run code, deploy, write tests, add feature, fix bug, write report etc.) The corresponding specialized agent is invoked to perform the action (Runner, Feature, Patcher, Reporter). Results are communicated back to the user and the project files are updated.
+          <br />
+          <br />
+          Throughout this process, the Agent Core is responsible for:
+          <ul>
+            <li>Managing conversation history and project-specific context</li>
+            <li>Updating agent state and internal monologue</li>
+            <li>Accumulating context keywords across agent prompts</li>
+            <li>Emulating the "thinking" process of the AI through timed agent state updates</li>
+            <li>Handling special commands through the Decision agent (e.g., git clone, browser interaction session)</li>
+          </ul>
+        </Text>
       </Box>
 
       <Box id="agents" my={10}>
